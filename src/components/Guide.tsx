@@ -41,13 +41,16 @@ const Guide = (props: Props) => {
     <div className="flex items-center justify-center min-h-screen  gap-10 flex-wrap">
       <div>
         {recipeFeatures.map((feature, index) => (
-          <div key={index} className="flex gap-2 items-center justify-start my-2 w-96 bg-orange-50 hover:bg-orange-300 duration-500 ease-in rounded-lg hover:shadow-lg">
+          <div
+            key={index}
+            className="flex gap-2 items-center justify-start my-2 w-96 bg-orange-50 hover:bg-orange-300 duration-500 ease-in rounded-lg hover:shadow-lg"
+          >
             <Image
               src={feature.imageUrl}
               alt={feature.title}
               width={100}
               height={100}
-              layout="fixed"
+              className="rounded-md hover:shadow-md"
             />
             <h3>{feature.title}</h3>
           </div>

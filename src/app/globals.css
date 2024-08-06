@@ -89,3 +89,15 @@
     border-radius: 17px;
     border: 9px solid #f25050;
   }
+
+
+
+  .progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: red;
+    transform-origin: 0%;
+  }

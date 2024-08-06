@@ -1,13 +1,26 @@
+"use client";
 import Guide from "@/components/Guide";
 import Hero from "@/components/Hero";
-import Nav from "@/components/Nav";
-
+import Progress from "@/components/Progress";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { useRef, useState } from "react";
 export default function Home() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+  });
+  const [hookedYPostion, setHookedYPosition] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setHookedYPosition(latest);
+    console.log(latest);
+  });
   return (
-    <main>
-      <Nav />
-      <Hero/>
-      <Guide/>
-    </main>
+    <motion.main ref={ref}>
+      <Progress y={hookedYPostion} />
+      <Hero />
+      <Guide />
+      <Guide />
+      <Guide />
+    </motion.main>
   );
 }
