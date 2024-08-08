@@ -16,11 +16,14 @@ import Image from "next/image";
 import { useMutation } from "@apollo/client";
 const categories = ["Dessert", "Dinner", "Breakfast", "Lunch"];
 const SubmissionForm = (props: Props) => {
+  //state to stores values
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [instruction, setInstruction] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  //function to handle recipe image
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedFile(e.target.files[0]);
@@ -28,6 +31,8 @@ const SubmissionForm = (props: Props) => {
       setSelectedFile(null);
     }
   };
+
+  //function to handle form
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
   };

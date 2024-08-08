@@ -1,5 +1,5 @@
-import { gql } from "@apollo/client"
-export const typeDefs = gql`#graphql
+
+export const typeDefs = `#graphql
     type Recipe {
         id: ID!
         name: String
@@ -10,15 +10,15 @@ export const typeDefs = gql`#graphql
         category: String
     }
     
-    type Query { 
-        getAllRecipes: [Recipe!]
-        recipeByName(name: String!): [Recipe!]
-        recipesByCategory(category: String!): [Recipe!]
+    type Query {
+        getAllRecipes: [Recipe!]!
+        recipeByName(name: String!): Recipe
+        recipesByCategory(category: String!): [Recipe!]!
     }
     
     type Mutation {
-        createRecipe(id: ID, name: String, instructions: String, description: String, createdAt: String, category: String): Recipe
-        updateRecipe(id: ID, name: String, instructions: String, description: String, createdAt: String, category: String): Recipe
+        createRecipe(id: ID, name: String, instructions: String, description: String, image:String, createdAt: String, category: String): Recipe
+        updateRecipe(id: ID, name: String, instructions: String, description: String, image:String, createdAt: String, category: String): Recipe
         deleteRecipe(id: ID!): Recipe
     }
 `;
