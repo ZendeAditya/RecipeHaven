@@ -1,14 +1,12 @@
-import { gql } from "@apollo/client"
-import { db } from "../lib/db/dbconnect"
-import { recipeTable } from "../lib/db/schema"
-import { eq } from "drizzle-orm";
+import { gql, useMutation } from "@apollo/client"
 
-export const CREATE_RECIPE = gql`
-    mutation AddRecipe(
+export const CREATE_RECIPE = gql`#graphql
+    mutation Mutation(
     $createRecipeId: ID
-    $name: String
+    $name: String!
     $instructions: String
     $description: String
+    $image: String
     $createdAt: String
     $category: String
     ) {
@@ -17,6 +15,7 @@ export const CREATE_RECIPE = gql`
         name: $name
         instructions: $instructions
         description: $description
+        image: $image
         createdAt: $createdAt
         category: $category
     ) {
@@ -24,13 +23,11 @@ export const CREATE_RECIPE = gql`
         name
         instructions
         description
-        createdAt
         image
+        createdAt
         category
     }
-}
-
-`
+}`
 export const UPDATE_RECIPE = gql`
     mutation UpdateRecipe(
     $updateRecipeId: ID
@@ -71,6 +68,12 @@ export const DELETE_RECIPE = gql`
     }
 }
 `
+
+
+export const useCreateRecipe = () => {
+    const [createRecipe, { data, loading, error }] = useMutation(CREATE_RECIPE);
+    return { createRecipe, data, loading, error };
+}
 
 // export const mutation = {
 //     createRecipe: async (parent: any, args: any) => {
@@ -124,3 +127,4 @@ export const DELETE_RECIPE = gql`
 //         return deletedRecipe[0];
 //     },
 // }
+

@@ -12,7 +12,6 @@ export default function Home() {
   const [hookedYPostion, setHookedYPosition] = useState(0);
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     setHookedYPosition(latest);
-    console.log(latest);
   });
   return (
     <motion.main ref={ref}>

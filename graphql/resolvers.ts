@@ -12,18 +12,16 @@ export const resolvers = {
         },
         recipesByCategory: async (parent: any, args: any) => {
             const { category } = args;
-            console.log(category);
             return db.select().from(recipeTable).where(eq(recipeTable.category, category)).execute();
         }
     },
     Mutation: {
         createRecipe: async (parent: any, args: any) => {
-            const { id, name, instructions, description, createdAt, category, image } = args;
+            const { name, instructions, description, createdAt, category, image } = args;
             if (!instructions) {
                 throw new Error("Instructions are required.");
             }
             const newRecipe = await db.insert(recipeTable).values({
-                id,
                 name,
                 instructions,
                 description,
@@ -36,8 +34,7 @@ export const resolvers = {
         },
         updateRecipe: async (parent: any, args: any) => {
             const { id, name, instructions, description, createdAt, category } = args;
-            console.log('Updating recipe with ID:', id);
-            console.log('New values:', { name, instructions, description, createdAt, category });
+            
 
             const updatedRecipe = await db.update(recipeTable)
                 .set({
