@@ -18,8 +18,6 @@ export default function Home() {
       <Progress y={hookedYPostion} />
       <Hero />
       <Guide />
-      <Guide />
-      <Guide />
     </motion.main>
   );
 }

@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 type Props = {
   name: String;
   instructions: String;
@@ -18,6 +20,7 @@ const RecipeCard = ({
   createdAt,
   category,
 }: Props) => {
+  const router = useRouter();
   function limitWords(str: String, limit: number) {
     const words = str.trim().split(" ");
     if (words.length <= limit) {
@@ -43,7 +46,12 @@ const RecipeCard = ({
         </div>
         <p className="px-4 py-1">{limitWords(description, 10)}</p>
 
-        <Button className="py-2 mx-2 w-40 absolute bottom-2">Read More</Button>
+        <Button
+          className="py-2 mx-2 w-40 absolute bottom-2"
+          onClick={() => router.push(`recipe-details/${name}`)}
+        >
+          Read More
+        </Button>
       </div>
     </section>
   );
